@@ -1,0 +1,106 @@
+#include <IRremote.h>
+#include <LiquidCrystal.h>
+
+#define PIN_RECEIVER 2   // Signal Pin of IR receiver
+
+IRrecv receiver(PIN_RECEIVER);
+
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+
+void setup()
+{
+  lcd.begin(16, 2);
+  lcd.print("<press a button>");
+  receiver.enableIRIn(); // Start the receiver
+}
+
+void loop()
+{
+  // Checks received an IR signal
+  if (receiver.decode()) {
+    translateIR();
+    receiver.resume();  // Receive the next value
+  }
+}
+
+void lcdPrint(char* text)
+{
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("button pressed:");
+  lcd.setCursor(0, 1);
+  lcd.print(text);
+  lcd.print(" code: ");
+  lcd.print(receiver.decodedIRData.command);
+}
+
+void translateIR()
+{
+  // Takes command based on IR code received
+  switch (receiver.decodedIRData.command) {
+    case 162: //Power
+      lcdPrint("POWER");
+      break;
+    case 226: //Menu
+      lcdPrint("MENU");
+      break;
+    case 34: //Test
+      lcdPrint("TEST");
+      break;
+    case 2: //Plus +
+      lcdPrint("PLUS");
+      break;
+    case 194: //Back
+      lcdPrint("BACK");
+      break;
+    case 224: //Prev
+      lcdPrint("PREV.");
+      break;
+    case 168: //Play
+      lcdPrint("PLAY");
+      break;
+    case 144: //Next
+      lcdPrint("NEXT");
+      break;
+    case 104: //Number 0
+      lcdPrint("num: 0");
+      break;
+    case 152: //Minus -
+      lcdPrint("MINUS");
+      break;
+    case 176: //Key C
+      lcdPrint("key: C");
+      break;
+    case 48: //Number 1
+      lcdPrint("num: 1");
+      break;
+    case 24: //Number 2
+      lcdPrint("num: 2");
+      break;
+    case 122: //Number 3
+      lcdPrint("num: 3");
+      break;
+    case 16: //Number 4
+      lcdPrint("num: 4");
+      break;
+    case 56: //Number 5
+      lcdPrint("num: 5");
+      break;
+    case 90: //Number 6
+      lcdPrint("num: 6");
+      break;
+    case 66: //Number 7
+      lcdPrint("num: 7");
+      break;
+    case 74: //Number 8
+      lcdPrint("num: 8");
+      break;
+    case 82: //Number 9
+      lcdPrint("num: 9");
+      break;
+    default:
+      lcd.clear();
+      lcd.print(receiver.decodedIRData.command);
+      lcd.print(" other button");
+  }
+}
