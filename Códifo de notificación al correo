@@ -1,0 +1,10 @@
+//Codigo para notificar al correo cada vez que se abre la puerta.
+//O bien cada vez que la señal entre el fotodiodo y el transistor detecte distorsión o se interrumpa.
+
+//Se utilizarán las bibliotecas del módulo wifi del ESP8266.
+//Además para enviar un correo desde arduino se deberá realizar mediante un proveedor SMTP.
+//En este código se utilizará SendGrid.
+
+
+
+
