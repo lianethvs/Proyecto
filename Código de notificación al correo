@@ -17,13 +17,13 @@
 # define  SSID  " nombre_wifi "
 # define  SSID_PASSWORD  " contraseña wifi "
 
-ThingerESP8266 cosa (USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
-int pushPin = 12 ; //   Pin 6 en Node MCU
+ThingerESP8266 modulo (USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
+int pushPin = 4 ; //   Pin 4 en Node MCU
 int val = 0 ;     // variable para leer el estado del pin
  
  configuración vacía () {
   
-  cosa. agregar_wifi (SSID, SSID_PASSWORD);
+  modulo. agregar_wifi (SSID, SSID_PASSWORD);
   
   pinMode (pushPin, INPUT_PULLUP); // declarar pulsador como entrada
   De serie. comenzar ( 9600 );
@@ -32,12 +32,12 @@ int val = 0 ;     // variable para leer el estado del pin
 }
 
  bucle vacío () {
-val = digitalRead (pushPin);
+val = infrarrojo (pushPin);
   De serie. println (val); // leer valor de entrada
-  if (val == LOW) {          // verifica si la entrada es ALTA (botón suelto)
+  if (val == 0) {          // verifica si la puerta se separó
     
-      cosa. manejar ();
-      cosa. call_endpoint ( " correo electrónico " );
+      modulo. manejar ();
+      modulo. call_endpoint ( " correo electrónico " );
       retraso ( 5000 );
   }
   
