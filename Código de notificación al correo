@@ -38,6 +38,7 @@ int val = 0 ;
       //El siguiente comando se utiliza para indicar el msj que recibirá el usuario.
       thing.call_endpoint ( " El presente correo le notifica que la puerta de su hogar ha sido abierta, tome las acciones necesarias. " );
       //Se indica el valor de retraso, no es mucho tiempo que tarda en enviar el correo.
+      //Se le pone delay para que el arduino tenga tiempo de procesar los datos.
       delay ( 5000 );
   }
 
