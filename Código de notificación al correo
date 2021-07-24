@@ -29,11 +29,6 @@ int val = 0 ;
 //Esto se añade en el void setup principal
   
   thing.add_wifi(NOMBRE_DE_WIFI, CONTRASEÑA);
-  
-  //Se declara el pin 4 como entrada.
-  pinMode (pushPin, INPUT_PULLUP); 
-  Serial.begin ( 9600 );
-
  
 //Esto se añade en el voidloop principal
 //Condición que verifica si la puerta se separó y "!0" indica que está cerrada.
