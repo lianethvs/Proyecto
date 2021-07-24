@@ -17,7 +17,7 @@
 # define   NOMBRE_DE_WIFI  " nombre_wifi "
 # define  CONTRASEÑA  " contraseña wifi "
 
-ThingerESP8266 modulo (USUARIO, ID, CREDENCIAL);
+ThingerESP8266 thing(USUARIO, ID, CREDENCIAL);
 //Se indica el pin de entrada que es el 4.
 int pushPin = 4 ;
 
