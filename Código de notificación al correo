@@ -3,7 +3,7 @@
 
 //Se utilizarán las bibliotecas del módulo wifi del ESP8266.
 //Además para enviar un correo desde arduino se deberá realizar mediante un proveedor SMTP.
-//En este código se utilizará SendGrid.
+//En este código se utilizará Thinger.io.
 
 # define  _DEBUG_
 # define  DISABLE_TLS
