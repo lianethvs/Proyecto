@@ -5,39 +5,49 @@
 //Además para enviar un correo desde arduino se deberá realizar mediante un proveedor SMTP.
 //En este código se utilizará SendGrid.
 
-# definir  _DEBUG_
+# define  _DEBUG_
 # define  DISABLE_TLS
-# incluye  < ESP8266WiFi.h >
-# include  < ThingerESP8266.h >
+# include  <ESP8266WiFi.h>
+# include  <ThingerESP8266.h>
 
-# define  USERNAME  "  "
-# define  DEVICE_ID  "  "
-# define  DEVICE_CREDENTIAL  "  "
+# define  USUARIO  "  "
+# define  ID  "  "
+# define  CREDENCIAL  "  "
 
-# define  SSID  " nombre_wifi "
-# define  SSID_PASSWORD  " contraseña wifi "
+# define   NOMBRE_DE_WIFI  " nombre_wifi "
+# define  CONTRASEÑA  " contraseña wifi "
 
-ThingerESP8266 modulo (USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
-int pushPin = 4 ; //   Pin 4 en Node MCU
-int val = 0 ;     // variable para leer el estado del pin
+ThingerESP8266 modulo (USUARIO, ID, CREDENCIAL);
+//Se indica el pin de entrada que es el 4.
+int pushPin = 4 ;
+
+//Además se introduce la variable para leer el estado del pin.
+//Cuando el valor es igual a cero, la puerta está abierta
+int val = 0 ; 
  
  configuración vacía () {
   
-  modulo. agregar_wifi (SSID, SSID_PASSWORD);
+  modulo. añadir_wifi (NOMBRE_DE_WIFI, CONTRASEÑA);
   
-  pinMode (pushPin, INPUT_PULLUP); // declarar pulsador como entrada
-  De serie. comenzar ( 9600 );
+  //Se declara el pin 4 como entrada.
+  pinMode (pushPin, INPUT_PULLUP); 
+  De serie. comenzar ( 115200 );
 
  
 }
-
+//La interacción entre el fotodiodo y el transistor que indica mediante el pin si la puerta ha sido abierta.
  bucle vacío () {
 val = infrarrojo (pushPin);
-  De serie. println (val); // leer valor de entrada
-  if (val == 0) {          // verifica si la puerta se separó
+   //Para leer el valor de entrada
+  De serie. println (val);
+  
+  //Condición que verifica si la puerta se separó y "!0" indica que está cerrada.
+  if (val == 0) {          
     
       modulo. manejar ();
-      modulo. call_endpoint ( " correo electrónico " );
+      //El siguiente comando se utiliza para indicar el msj que recibirá el usuario.
+      modulo. call_endpoint ( " El presente correo le notifica que la puerta de su hogar ha sido abierta, tome las acciones necesarias. " );
+      //Se indica el valor de retraso, no es mucho tiempo que tarda en enviar el correo.
       retraso ( 5000 );
   }
   
