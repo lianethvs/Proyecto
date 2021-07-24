@@ -25,32 +25,24 @@ int pushPin = 4 ;
 //Cuando el valor es igual a cero, la puerta está abierta
 int val = 0 ; 
  
- configuración vacía () {
+
+//Esto se añade en el void setup principal
   
-  modulo. añadir_wifi (NOMBRE_DE_WIFI, CONTRASEÑA);
+  thing.add_wifi(NOMBRE_DE_WIFI, CONTRASEÑA);
   
   //Se declara el pin 4 como entrada.
   pinMode (pushPin, INPUT_PULLUP); 
-  serial.begin ( 9600 );
+  Serial.begin ( 9600 );
 
  
-}
-//La interacción entre el fotodiodo y el transistor que indica mediante el pin si la puerta ha sido abierta.
- bucle vacío () {
-val = infrarrojo (pushPin);
-   //Para leer el valor de entrada
-  De serie. println (val);
-  
-  //Condición que verifica si la puerta se separó y "!0" indica que está cerrada.
-  if (val == 0) {          
+//Esto se añade en el voidloop principal
+//Condición que verifica si la puerta se separó y "!0" indica que está cerrada.
+   if (val == 0) {          
     
-      modulo. manejar ();
+      thing.handle ();
       //El siguiente comando se utiliza para indicar el msj que recibirá el usuario.
-      modulo. call_endpoint ( " El presente correo le notifica que la puerta de su hogar ha sido abierta, tome las acciones necesarias. " );
+      thing.call_endpoint ( " El presente correo le notifica que la puerta de su hogar ha sido abierta, tome las acciones necesarias. " );
       //Se indica el valor de retraso, no es mucho tiempo que tarda en enviar el correo.
-      retraso ( 5000 );
+      delay ( 5000 );
   }
-  
-}
-
 
