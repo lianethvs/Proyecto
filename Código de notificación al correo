@@ -31,7 +31,7 @@ int val = 0 ;
   
   //Se declara el pin 4 como entrada.
   pinMode (pushPin, INPUT_PULLUP); 
-  De serie. comenzar ( 115200 );
+  serial.begin ( 9600 );
 
  
 }
